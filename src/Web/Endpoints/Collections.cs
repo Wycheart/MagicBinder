@@ -1,0 +1,48 @@
+﻿using MagicBinder.Application.Collections.Commands.CreateCollection;
+using MagicBinder.Application.Collections.Queries.GetCollections;
+using Microsoft.AspNetCore.Http.HttpResults;
+
+namespace MagicBinder.Web.Endpoints;
+public class Collections : EndpointGroupBase
+{
+    public override void Map(WebApplication app)
+    {
+        app.MapGroup(this)
+            //.RequireAuthorization()
+            .MapGet(GetCollections)
+            .MapPost(CreateCollection)
+            //.MapPut(UpdateTodoList, "{id}")
+            //.MapDelete(DeleteTodoList, "{id}")
+            ;
+    }
+
+    public async Task<Ok<CollectionsVm>> GetCollections(ISender sender)
+    {
+        var vm = await sender.Send(new GetCollectionsQuery());
+
+        return TypedResults.Ok(vm);
+    }
+
+    public async Task<Created<int>> CreateCollection(ISender sender, CreateCollectionCommand command)
+    {
+        var id = await sender.Send(command);
+
+        return TypedResults.Created($"/{nameof(Collections)}/{id}", id);
+    }
+
+    //public async Task<Results<NoContent, BadRequest>> UpdateTodoList(ISender sender, int id, UpdateTodoListCommand command)
+    //{
+    //    if (id != command.Id) return TypedResults.BadRequest();
+
+    //    await sender.Send(command);
+
+    //    return TypedResults.NoContent();
+    //}
+
+    //public async Task<NoContent> DeleteTodoList(ISender sender, int id)
+    //{
+    //    await sender.Send(new DeleteTodoListCommand(id));
+
+    //    return TypedResults.NoContent();
+    //}
+}
