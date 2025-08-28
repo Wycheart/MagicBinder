@@ -28,7 +28,7 @@ public class GetCollectionsQueryHandler : IRequestHandler<GetCollectionsQuery, C
         return new CollectionsVm
         {
             Collection = await _context.Collections
-                //.Include(x =>x.Cards)
+                .Include(x =>x.Cards)
                 .AsNoTracking()
                 .ProjectTo<CollectionDto>(_mapper.ConfigurationProvider)
                 .OrderBy(t => t.Title)

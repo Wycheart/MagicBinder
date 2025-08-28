@@ -241,7 +241,12 @@
               }
             }
           }
-        }
+        },
+        "security": [
+          {
+            "JWT": []
+          }
+        ]
       },
       "post": {
         "tags": [
@@ -272,7 +277,12 @@
               }
             }
           }
-        }
+        },
+        "security": [
+          {
+            "JWT": []
+          }
+        ]
       }
     },
     "/api/TodoItems": {
@@ -1228,7 +1238,7 @@
             "type": "string",
             "nullable": true
           },
-          "collection": {
+          "cards": {
             "type": "array",
             "items": {
               "$ref": "#/components/schemas/CardDto"
@@ -1244,22 +1254,7 @@
             "type": "integer",
             "format": "int32"
           },
-          "listId": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "title": {
-            "type": "string",
-            "nullable": true
-          },
-          "done": {
-            "type": "boolean"
-          },
-          "priority": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "note": {
+          "name": {
             "type": "string",
             "nullable": true
           }

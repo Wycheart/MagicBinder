@@ -5,7 +5,7 @@ public class CollectionDto
 {
     public CollectionDto()
     {
-        Collection = Array.Empty<CardDto>();
+        Cards = Array.Empty<CardDto>();
     }
 
     public int Id { get; init; }
@@ -14,13 +14,14 @@ public class CollectionDto
 
     public string? Colour { get; init; }
 
-    public IReadOnlyCollection<CardDto> Collection { get; init; }
+    public IReadOnlyCollection<CardDto> Cards { get; init; }
 
     private class Mapping : Profile
     {
         public Mapping()
         {
             CreateMap<Collection, CollectionDto>();
+            CreateMap<Card, CardDto>();
         }
     }
 }

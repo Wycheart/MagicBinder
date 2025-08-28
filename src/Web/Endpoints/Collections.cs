@@ -8,7 +8,7 @@ public class Collections : EndpointGroupBase
     public override void Map(WebApplication app)
     {
         app.MapGroup(this)
-            //.RequireAuthorization()
+            .RequireAuthorization()
             .MapGet(GetCollections)
             .MapPost(CreateCollection)
             //.MapPut(UpdateTodoList, "{id}")
